@@ -1,4 +1,5 @@
 <template>
+<!-- Used to be called HelloWorld.vue -->
   <div class="hello">
     <h1>{{ msg }}</h1>
   </div>
