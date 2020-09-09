@@ -17,5 +17,6 @@ export default {
 <style>
     .text-muted {
         text-align: center;
+        display: none;
     }
 </style>

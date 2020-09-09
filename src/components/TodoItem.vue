@@ -33,6 +33,7 @@
 
     .del {
         background: red;
+        background: #42b983;
         color: white;
         border: none;
         padding: 1px 8px;

@@ -1,7 +1,10 @@
 <template>
     <div id="home">
+        <main v-if="loading">
+            <Spinner />
+        </main>
         <!-- Natupia content hapa -->
-        <main role="main" class="container">
+        <main v-else role="main" class="container">
             <AddTodo v-on:add-todo="addTodo" />
             <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
         </main>
@@ -12,16 +15,19 @@
     import AddTodo from '../components/AddTodo';
     import Todos from '../components/Todos';
     import axios from "axios";
+    import Spinner from "../components/layout/Spinner";
 
     export default {
         name: 'App',
         components: {
             AddTodo,
-            Todos,  
+            Todos, 
+            Spinner,
         },
         data() {
             return {
-                todos: []
+                todos: [],
+                loading: false
             }
         },
         methods: {
@@ -43,9 +49,11 @@
             }
         },
         created() {
+            this.loading = true
             axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
             .then(res => this.todos = res.data)
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => (this.loading = false));
         }
     }
 </script>
